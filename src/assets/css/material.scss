@@ -1,0 +1,127 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+$custom-typography: mat-typography-config(
+    $font-family: 'Proxima-Nova, Helvetica, Arial, Lucida Grande, Lucida Sans, sans-serif',
+);
+@include mat-core($custom-typography);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss (imported above). For each palette, you can optionally specify a default, lighter, and darker hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+$ucdh-app-primary: mat-palette($mat-cyan, 700);
+$ucdh-app-accent:  mat-palette($mat-cyan, 700);
+
+// The warn palette is optional (defaults to red).
+$ucdh-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ucdh-app-theme: mat-light-theme($ucdh-app-primary, $ucdh-app-accent, $ucdh-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ucdh-app-theme);
+
+/* CUSTOM MATERIAL STYLES */
+.mat-menu-panel {
+	margin-top:10px;
+}
+
+.mat-menu-item {color:#003570; font-weight: bold; height:35px!important; line-height: 35px!important;}
+.radio-inline, .checkbox-inline {padding-left: 0px; margin-right: 10px;}
+.mat-radio-button {margin-right:10px;}
+.mat-radio-outer-circle, .mat-checkbox-frame {border-color:#ccc; border-width:1px!important; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);}
+
+/* Dialog Styles */
+html {
+	.mat-dialog-container {padding: 0px;
+		overflow: visible;
+		height:auto;
+	}
+	.mat-dialog-title {
+		background: #003570;
+		color:#fff;
+		padding:5px 15px;
+		margin: 0px;
+		border-radius: 2px 2px 0 0; 
+	}
+	.mat-dialog-content {
+		padding: 15px;
+		margin:0px;
+	}
+	.mat-dialog-actions {
+		text-align: center;
+		display: block;
+		margin: 0px;
+
+		button {outline: none;}
+	}
+}
+
+/* TABLE STYLES */
+.table-wrap {
+	position: relative; padding-bottom:10px;
+
+	.mat-table {width:100%; margin: 0 0 20px 0; font-family:inherit; border-collapse: separate; -webkit-box-shadow: 0px 0px 5px 1px rgba(84, 84, 84, 0.15); box-shadow: 0px 0px 5px 1px rgba(84, 84, 84, 0.15);}
+	.mat-header-cell {font-weight: bold; color:#003570; text-align: left; font-size:0.9em;}
+	.mat-paginator {background: transparent;}
+	.mat-paginator-container {padding:0; min-height:50px;}
+	.mat-paginator-range-actions {width: 100%; position: absolute; bottom: -20px; left:0;}
+	.mat-icon-button {background:#fff; border:solid 1px #e4e4e4; line-height:25px; width:35px; height:35px;}
+	.mat-paginator-icon {fill:#00829b;}
+	.mat-icon-button[disabled][disabled] .mat-paginator-icon {opacity: 0.5;}
+	.mat-paginator-navigation-first{position: absolute; left:0px;}
+	.mat-paginator-navigation-previous{position: absolute; left:0px;}
+	.mat-paginator-navigation-next{position: absolute; right:0px;}
+	.mat-paginator-navigation-last{position: absolute; right:0px;}
+	.mat-paginator-range-label {margin:0 auto;}
+	.mat-cell, .mat-header-cell {overflow: visible;}
+	.mat-header-row, .mat-row {padding:0 10px;}
+	.mat-column-action {text-align: center;}
+	.mat-row .mat-cell, .mat-header-row .mat-header-cell {padding:3px; font-size: 0.75em;}
+	.mat-cell {overflow-wrap: break-word; word-wrap: break-word;  word-break: break-word; -ms-hyphens: auto; -moz-hyphens: auto; -webkit-hyphens: auto; hyphens: auto;}
+	.mat-paginator-page-size {margin:0;}
+	.mat-paginator-page-size-select {height: 30px; padding: 0 0 0 7px; margin:6px 0 0 4px; font-size: 14px; color: #555555; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 0px; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;}
+	.mat-paginator, .mat-paginator-page-size .mat-select-trigger {font-size:14px;}
+	.mat-sort-header-button {text-align: left;}
+	.mat-sort-header-button:after { font-family: data-table; content:"c";}
+	.mat-header-cell[aria-sort="ascending"] .mat-sort-header-sorted .mat-sort-header-button:after { content: "e"; }
+	.mat-header-cell[aria-sort="descending"] .mat-sort-header-sorted .mat-sort-header-button:after { content: "f"; }
+	.mat-sort-header-arrow {display:none;}
+	.mat-sort-header-stem {background: none; display: none!important;}
+	  
+	.mat-sort-header-pointer-middle{background: none; display: none!important;}
+	  
+	.mat-sort-header-indicator{top: 5px!important;}
+}
+
+@media (min-width: 992px) {
+	.table-wrap {
+		.mat-row .mat-cell, .mat-header-row .mat-header-cell {font-size: 0.9em; padding:5px;}
+		.mat-sort-header-button:after { font-family: data-table; content: "c"; }
+	}
+}
+
+/* Form Styles */
+.mat-form-field-underline {opacity: 0}
+.mat-form-field-infix {border-top:0px;}
+
+/* Tab Styles */
+.mat-tab-nav-bar, .mat-tab-header {border:0;}
+.mat-tab-labels {border:solid 1px #e2e2e2;}
+.mat-tab-label {font-size:1em; color:rgba(84, 84, 84, 0.5)!important; opacity: 1!important;}
+.mat-tab-label-active { color:rgba(84, 84, 84, 1)!important; background:#fff!important;}
+
+
+/* Stepper Styles */
+.mat-horizontal-content-container {padding-top:20px!important; position: relative;}
+.mat-horizontal-stepper-header-container {background:#00829b; color:#fff;}
+.mat-step-header .mat-step-icon {background-color:#fff; color:#00829b;}
+.mat-step-header .mat-step-icon-not-touched {background-color: rgba(255, 255, 255, 0.5); color:#00829b}
+.mat-stepper-horizontal-line {border-top-color: rgba(255, 255, 255, 0.5);}
+.mat-step-label {font-size:1em; font-weight:400; color: rgba(255, 255, 255, 0.5)!important;}
+.mat-step-label-selected {font-weight:600; color: rgba(255, 255, 255, 1)!important;}
