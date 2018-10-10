@@ -88,9 +88,9 @@ html {
 	.mat-paginator-page-size-select {height: 30px; padding: 0 0 0 7px; margin:6px 0 0 4px; font-size: 14px; color: #555555; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 0px; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;}
 	.mat-paginator, .mat-paginator-page-size .mat-select-trigger {font-size:14px;}
 	.mat-sort-header-button {text-align: left;}
-	.mat-sort-header-button:after { font-family: data-table; content:"c";}
-	.mat-header-cell[aria-sort="ascending"] .mat-sort-header-sorted .mat-sort-header-button:after { content: "e"; }
-	.mat-header-cell[aria-sort="descending"] .mat-sort-header-sorted .mat-sort-header-button:after { content: "f"; }
+	.mat-sort-header-button:after { font-family: ucdh; content:"D";}
+	.mat-header-cell[aria-sort="ascending"] .mat-sort-header-sorted .mat-sort-header-button:after { content: "E"; }
+	.mat-header-cell[aria-sort="descending"] .mat-sort-header-sorted .mat-sort-header-button:after { content: "F"; }
 	.mat-sort-header-arrow {display:none;}
 	.mat-sort-header-stem {background: none; display: none!important;}
 	  
@@ -102,7 +102,6 @@ html {
 @media (min-width: 992px) {
 	.table-wrap {
 		.mat-row .mat-cell, .mat-header-row .mat-header-cell {font-size: 0.9em; padding:5px;}
-		.mat-sort-header-button:after { font-family: data-table; content: "c"; }
 	}
 }
 

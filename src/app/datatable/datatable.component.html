@@ -1,6 +1,8 @@
 <h2>Data Table Example</h2>
 
 <div class="table-wrap">
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="getPageSizeOptions()"></mat-paginator>
+
   <table mat-table [dataSource]="dataSource" matSort matSortActive="courseCode" matSortDirection="asc">
 
     <!-- Checkbox Column -->
@@ -38,21 +40,6 @@
     <ng-container matColumnDef="length">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Block Length</th>
       <td mat-cell *matCellDef="let element">{{element.length}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="localAway">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Local/Away</th>
-      <td mat-cell *matCellDef="let element">{{element.localAway}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="openTo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Open To</th>
-      <td mat-cell *matCellDef="let element">{{element.openTo}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="seats">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Seats</th>
-      <td mat-cell *matCellDef="let element">{{element.seats}}</td>
     </ng-container>
 
     <ng-container matColumnDef="published">

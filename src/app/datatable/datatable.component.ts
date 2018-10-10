@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 
@@ -7,15 +7,23 @@ import {SelectionModel} from '@angular/cdk/collections';
   templateUrl: './datatable.component.html',
   styleUrls: ['./datatable.component.css']
 })
-export class DatatableComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'courseCode', 'courseName', 'period', 'length', 'localAway', 'openTo', 'seats', 'published', 'action'];
+export class DatatableComponent implements OnInit, AfterViewChecked {
+  displayedColumns: string[] = ['select', 'courseCode', 'courseName', 'period', 'length', 'published', 'action'];
   dataSource = new MatTableDataSource<TestData>(ELEMENT_DATA);
   selection = new SelectionModel<TestData>(true, []);
+  length = 10;
+  pageSize = 10;
+  pageSizeOptions: number[] = [10, 25, 100];
+  allReplacement = 54321;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor() { }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -34,6 +42,40 @@ export class DatatableComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.paginator._intl.itemsPerPageLabel = 'Display Results:';
+  }
+
+  ngAfterViewChecked() {
+    /**
+     * Assign the mat-option-# for the "All" replacement to a variable for re-use
+     *
+     * The "#" in "mat-option-#" is determined by the index of the this.allReplacement
+     * variable location in the numeric array returned by the getPageSizeOptions()
+     * method.
+     */
+    // const matOption = document.getElementById('mat-option-2');
+    const matOptions = document.querySelectorAll('mat-option');
+
+    // If the replacement element was found...
+    if (matOptions) {
+      const matOptionsLen = matOptions.length;
+      for (let i = matOptionsLen - 1; i >= 0; i--) {
+        const matOption = matOptions[i];
+
+        // Store the span in a variable for re-use
+        const span = matOption.querySelector('span.mat-option-text');
+        // If the spans innerHTML string value is the same as the allReplacement variables string value...
+        if ('' + span.innerHTML === '' + this.allReplacement) {
+          // Change the span text to "All"
+          span.innerHTML = 'All';
+          break;
+        }
+      }
+    }
+  }
+
+  getPageSizeOptions() {
+    return [10, 25, this.allReplacement];
   }
 
 }
